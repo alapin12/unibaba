@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-#sussy way to get images to load on website, apparently shouldnt do this on production
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -32,5 +31,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rating/', include('rating.urls')),
     path('rate/', rate_image, name='rate-view'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #also part of the sussy way to get images to load
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # serve uploads in development only
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

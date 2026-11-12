@@ -8,7 +8,7 @@ class Category(models.Model):
     
     class Meta:
         ordering = ('name',) #list items to admin in alphabetical order
-        verbose_name_plural = 'Categories' #fixes some dumbass spelling
+        verbose_name_plural = 'Categories'
         
     def __str__(self): #actuallly displays the name of the categories
         return self.name
