@@ -20,13 +20,13 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
-        def clean_email(self):
-            original_email = self.cleaned_data.get('email')
-            email = original_email.split('@')[1] 
-            if not email == "@ad.unsw.edu.au":
-                raise forms.ValidationError({"Only @ad.unsw.edu.au email addresses allowed"})
-            return email
-    
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email', '').strip().lower()
+        if not email.endswith('@ad.unsw.edu.au'):
+            raise ValidationError("Only @ad.unsw.edu.au email addresses are allowed.")
+        return email
+
     username = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Your username',
         'class': 'w-full py-4 px-6 rounded-xl', 
